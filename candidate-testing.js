@@ -29,7 +29,7 @@ function askQuestion() {
 const input = require('readline-sync');
   for (let i = 0; i < questions.length; i++) {
        let userAnswers = input.question(questions[i]);
-        candidateAnswers.push(userAnswers);
+        candidateAnswers.push(userAnswers)
   }
 }
 // i = 0 and i is less than 5. 
@@ -45,6 +45,7 @@ function gradeQuiz(candidateAnswers) {
   // }
 // this is after using the input function for part one and "grading" the answer, telling user correct or incorrect
 
+
 console.log(`Candidate name: ${candidateName}`); 
 for (let i = 0; i < questions.length; i++) {
   console.log(`${questions[i]}`);
@@ -52,11 +53,23 @@ for (let i = 0; i < questions.length; i++) {
       console.log(`Correct answer:  ${correctAnswers[i]}\n`); 
 }
 
+
 //console.log(`Your responses: ${candidateAnswers} and correct answers: ${correctAnswers}.`);
 
+//TODO 3.2 use this variable to calculate the candidates score.
+let score = 0
+for (let i = 0; i < questions.length; i++) {
+  if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()) score++;
+}
+let grade = (score) / (questions.length) * 100 
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+console.log(`>>> Overall Grade: ${grade}% (${score} of 5 responses correct) <<<`);
 
+if (grade >= 80) {
+console.log(`>>> Status: PASSED <<<`)
+} else {
+console.log(`>>> Status: FAILED <<<`)
+}
 
   return grade;
 }
